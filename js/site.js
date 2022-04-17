@@ -25,14 +25,14 @@ element.addEventListener('submit', event => {
         if (minutes === 15) {
             timer5 = setInterval(function () {
                 say(time);
-            }, 5 * 1000)
+            }, 5 * 60 * 1000)
         }
         if (minutes === 0) {
             clearInterval(timer1);
             clearInterval(timer5);
             message.innerText = "Время вышло"
         }
-    }, 1000);
+    }, 60 * 1000);
 });
 function say(time) {
     let hours = time.getHours();
