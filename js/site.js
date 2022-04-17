@@ -3,6 +3,7 @@ let timeField = document.getElementById('time');
 let message = document.getElementById('message');
 element.addEventListener('submit', event => {
     event.preventDefault();
+    message.innerText = ""
 
     let time = new Date('1970-01-01T' + timeField.value);
     let minutes = inMinutes(time);
@@ -22,7 +23,6 @@ element.addEventListener('submit', event => {
         }
         if (minutes === 15) {
             timer5 = setInterval(function () {
-                console.log('Прошло 5 минут');
                 say(time);
             }, 5 * 1000)
         }
@@ -34,8 +34,38 @@ element.addEventListener('submit', event => {
     }, 1000);
 });
 function say(time) {
-    let audio = new Audio('sounds/1.m4a');
-    audio.play();
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    var i = -1;
+    let sounds = [];
+    const playSnd = () => {
+        i++;
+        if (i === sounds.length) return;
+        sounds[i].addEventListener('ended', playSnd);
+        sounds[i].play();
+    }
+
+    sounds.push(new Audio('sounds/pre.m4a'));
+    if (hours === 0 && minutes === 0) {
+        sounds.push(new Audio('sounds/время-вышло.m4a'));
+        playSnd();
+        return;
+    }
+
+    sounds.push(new Audio('sounds/до-конца.m4a'));
+    if (hours > 0) {
+        sounds.push(new Audio('sounds/'+ hours +'.m4a'));
+        if (hours === 2 || hours === 3) {
+            sounds.push(new Audio('sounds/часа.m4a'));
+        } else {
+            sounds.push(new Audio('sounds/час.m4a'));
+        }
+    }
+    if (minutes > 0) {
+        sounds.push(new Audio('sounds/'+ minutes +'.m4a'));
+        sounds.push(new Audio('sounds/минут.m4a'));
+    }
+    playSnd();
 }
 
 function decreaseTimeFieldVal(time) {
