@@ -4,19 +4,17 @@
 }
 #time {
     font-size: 4rem;
-    width: 20%;
     height: 5rem;
 }
 #start {
     font-size: 4rem;
     height: 5rem;
-    width: 10%;
 }
 #message {
     font-size: 4rem;
 }
 #container {
-    padding-top: 5%;
+    margin-top: 5%;
 }
 .block {
     width: 100%;
