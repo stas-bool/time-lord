@@ -1,9 +1,11 @@
 const element = document.querySelector('form');
 let timeField = document.getElementById('time');
 let message = document.getElementById('message');
+let startButton = document.getElementById('start');
 element.addEventListener('submit', event => {
     event.preventDefault();
     message.innerText = ""
+    startButton.value = 'В процессе';
 
     let time = new Date('1970-01-01T' + timeField.value);
     let minutes = inMinutes(time);
