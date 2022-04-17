@@ -6,14 +6,18 @@
     <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<form>
-    <label>
-        <input id="time" name="duration" type="time" min="00:15" max="3:00" value="00:16" required>
-    </label>
-    <input type="submit" id="start" value="Go!">
-</form>
-<meter id="meeting-progress" value="0"></meter>
-<div id="message"></div>
+<div id="container">
+    <div class="block">
+        <form>
+            <label>
+                <input id="time" name="duration" type="time" min="00:15" max="3:00" value="00:20" required autofocus>
+            </label>
+            <input type="submit" id="start" value="Go!">
+        </form>
+    </div>
+    <meter id="meeting-progress" value="0" low="6" high="16"></meter>
+    <div id="message" class="block"></div>
+</div>
 <script src="js/site.js"></script>
 </body>
 </html>

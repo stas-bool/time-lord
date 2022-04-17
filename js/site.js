@@ -9,6 +9,7 @@ element.addEventListener('submit', event => {
     let minutes = inMinutes(time);
     let progress = document.getElementById('meeting-progress');
     progress.max = minutes;
+    progress.optimum = minutes;
     progress.value = minutes;
     let timer5;
 
@@ -29,7 +30,7 @@ element.addEventListener('submit', event => {
         if (minutes === 0) {
             clearInterval(timer1);
             clearInterval(timer5);
-            message.innerText = "Конец собрания"
+            message.innerText = "Время вышло"
         }
     }, 1000);
 });
