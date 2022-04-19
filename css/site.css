@@ -1,17 +1,17 @@
 #meeting-progress {
     width: 100%;
-    height: 5rem
+    height: 3rem
 }
 #time {
-    font-size: 4rem;
-    height: 5rem;
+    font-size: 2rem;
+    height: 3rem;
 }
 #start {
-    font-size: 4rem;
-    height: 5rem;
+    font-size: 2rem;
+    height: 3rem;
 }
 #message {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 #container {
     margin-top: 5%;
