@@ -2,6 +2,9 @@ const element = document.querySelector('form');
 let timeField = document.getElementById('time');
 let message = document.getElementById('message');
 let startButton = document.getElementById('start');
+window.onbeforeunload = function() {
+    return true;
+}
 element.addEventListener('submit', event => {
     event.preventDefault();
     message.innerText = ""
