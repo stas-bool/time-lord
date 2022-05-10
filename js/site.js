@@ -35,7 +35,7 @@ element.addEventListener('submit', event => {
         if (minutes === 0) {
             clearInterval(timer1);
             clearInterval(timer5);
-            message.innerText = "Время вышло"
+            message.innerText = "Собрание окончено"
         }
     }, 60 * 1000);
 });
@@ -53,7 +53,7 @@ function say(time) {
 
     sounds.push(new Audio('sounds/pre.m4a'));
     if (hours === 0 && minutes === 0) {
-        sounds.push(new Audio('sounds/время-вышло.m4a'));
+        sounds.push(new Audio('sounds/end.m4a'));
         playSnd();
         return;
     }
