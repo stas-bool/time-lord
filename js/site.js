@@ -51,7 +51,17 @@ function say(time) {
         sounds[i].play();
     }
 
+    let hoursFile = 'sounds/'+ hours +'.m4a';
+    let minutesFile = 'sounds/'+ minutes +'.m4a';
     sounds.push(new Audio('sounds/pre.m4a'));
+    if (hours !== 0 && !fileExists(hoursFile)) {
+        playSnd();
+        return;
+    }
+    if (minutes !== 0 && !fileExists(minutesFile)) {
+        playSnd();
+        return;
+    }
     if (hours === 0 && minutes === 0) {
         sounds.push(new Audio('sounds/end.m4a'));
         playSnd();
@@ -60,7 +70,7 @@ function say(time) {
 
     sounds.push(new Audio('sounds/до-конца.m4a'));
     if (hours > 0) {
-        sounds.push(new Audio('sounds/'+ hours +'.m4a'));
+        sounds.push(new Audio(hoursFile));
         if (hours === 2 || hours === 3) {
             sounds.push(new Audio('sounds/часа.m4a'));
         } else {
@@ -68,7 +78,7 @@ function say(time) {
         }
     }
     if (minutes > 0) {
-        sounds.push(new Audio('sounds/'+ minutes +'.m4a'));
+        sounds.push(new Audio(minutesFile));
         sounds.push(new Audio('sounds/минут.m4a'));
     }
     playSnd();
