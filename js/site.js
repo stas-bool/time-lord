@@ -1,5 +1,6 @@
 const element = document.querySelector('form');
 let timeField = document.getElementById('time');
+let isTime = document.getElementById('is-time');
 let message = document.getElementById('message');
 let startButton = document.getElementById('start');
 window.onbeforeunload = function() {
@@ -10,8 +11,17 @@ element.addEventListener('submit', event => {
     message.innerText = ""
     startButton.value = 'В процессе';
 
-    let time = new Date('1970-01-01T' + timeField.value);
-    let minutes = inMinutes(time);
+    let minutes = null;
+    let time = null;
+    if (isTime.checked) {
+        minutes = endTimeToMinutes(timeField.value);
+        message.innerText = "Окончание в " + timeField.value;
+        time = new Date(new Date(minutes * 60 * 1000).toISOString().slice(0, -2));
+        decreaseTimeFieldVal(time);
+    } else {
+        time = new Date('1970-01-01T' + timeField.value);
+        minutes = inMinutes(time);
+    }
     let progress = document.getElementById('meeting-progress');
     progress.max = minutes;
     progress.optimum = minutes;
@@ -98,6 +108,12 @@ function inMinutes(time) {
     let minutes = time.getHours() * 60;
     minutes += time.getMinutes();
     return minutes;
+}
+
+function endTimeToMinutes(endTime) {
+    let now = new Date();
+    let end = new Date(now.toDateString() + ' ' + endTime);
+    return Math.floor((end - now) / 1000 / 60);
 }
 
 function subtractMinutes(numOfMinutes, date = new Date()) {
