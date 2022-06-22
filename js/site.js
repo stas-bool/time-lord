@@ -93,3 +93,11 @@ function inMinutes(time) {
 function subtractMinutes(numOfMinutes, date = new Date()) {
     date.setMinutes(date.getMinutes() - numOfMinutes);
 }
+
+function fileExists(url)
+{
+    let http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status !== 404;
+}
